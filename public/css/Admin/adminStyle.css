@@ -1,0 +1,158 @@
+.fw-normal {
+    font-weight: 400!important;
+}
+.bg-gradient-primary {
+    background-color: #E64C4C;
+    background-image: linear-gradient(180deg, #df1b1b 0%, #ce2525 100%);;
+    background-size: cover;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0.75rem 1rem;
+    margin-bottom: unset;
+    list-style: none;
+    background-color: unset;
+    border-radius: 0.35rem;
+}
+
+.text-overflow-2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.border-left-current {
+    border-left: 4px solid currentColor;
+}
+a {
+    color: #4e73df;
+    color: #E64C4C;
+    text-decoration: none;
+    background-color: transparent;
+    text-decoration: unset;
+}
+a:hover {
+    color: #224abe;
+    color: #c83333;
+    text-decoration: none;
+}
+button.dt-button {
+    background: none;
+    border: none;
+}
+button.dt-button:hover:not(.disabled), 
+div.dt-button:hover:not(.disabled), 
+a.dt-button:hover:not(.disabled), 
+input.dt-button:hover:not(.disabled) {
+    background: #E64C4C;
+    border: none;
+    color: #fff!important;
+    opacity: 0.8;
+}
+
+.dt-button.buttons-create:not(.disabled) {
+    background-color: #1cc88a ;
+    color: #fff!important;
+    border-radius: 10px;
+}
+.dt-button.buttons-create:hover:not(.disabled) {
+    background: #1cc88a ;
+    color: #fff!important;
+    opacity: .8;
+}
+
+.dt-button.buttons-edit:not(.disabled) {
+    background-color: #f6c23e  ;
+    color: #fff!important;
+    border-radius: 10px;
+}
+.dt-button.buttons-edit:hover:not(.disabled) {
+    background: #f6c23e  ;
+    color: #fff!important;
+    opacity: .8;
+}
+div.dt-buttons {
+    width: calc(100% - 260px);
+}
+.dt-button.buttons-remove {
+    margin-right: auto;
+}
+.dt-button.buttons-remove:not(.disabled) {
+    background-color: #e74a3b   ;
+    color: #fff!important;
+    border-radius: 10px;
+}
+.dt-button.buttons-remove:hover:not(.disabled) {
+    background: #e74a3b   ;
+    color: #fff!important;
+    opacity: .8;
+}
+.custom-csv-button {
+    margin-right: 10px;
+}
+.dt-button .buttons-print .btn-primary:not(.disabled),
+.dt-button .buttons-html5 .btn-primary:not(.disabled),
+.dt-button.buttons-html5:not(.disabled){
+    background-color: #36b9cc!important;
+    color: #fff!important;
+    border-radius: 10px;
+    float: right!important;
+}
+.dt-button .buttons-html5 .btn-primary,
+.dt-button.buttons-html5:hover:not(.disabled){
+background: #36b9cc;
+    color: #fff!important;
+    opacity: .8;
+}
+.h7 {
+    font-size: 0.8rem;
+}
+#accordionSidebar {
+    transition: all ease .4s;
+}
+
+.sidebar .nav-item .collapse .collapse-inner {
+    background-color: rgba(0, 0, 0, 0.15);
+}
+.sidebar.toggled .avatar,
+.sidebar.toggled .sidebar-brand {
+    width: 6.5rem;
+}
+.sidebar .avatar img {
+    object-fit: cover;
+    border-radius: 100px;
+    width: 40px;
+    margin-bottom: 5px;
+}
+.sidebar .greeting {
+    transition: all ease .4s;
+    font-size: 12px;
+}
+.toggled .greeting {
+    display: none!important;
+    white-space: nowrap;
+}
+.card-content {
+    min-width: 280px;
+}
+.card-content .card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    padding: 2rem;
+    position: relative;
+}
+.card-content .card-icon::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: currentColor;
+    opacity: .3;
+}

@@ -1,0 +1,11 @@
+.bg-gradient-primary {
+    background-size: cover;
+    background: #eee;
+}
+.bg-login-image,
+.bg-password-image,
+.bg-register-image {
+    background: url("/img/account/login1.jpg");
+    background-position: center;
+    background-size: cover;
+}
