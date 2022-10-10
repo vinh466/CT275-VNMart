@@ -1,12 +1,17 @@
 CT27502
 
-Sinh viên thực hiện:
-Lê Minh Triết B1910470 & Nguyễn Thành Vinh B1910483
+## Sinh viên thực hiện:
+* Lê Minh Triết B1910470
+* Nguyễn Thành Vinh B1910483
 
-Cài đặt:
-Composer install
+## Cài đặt:
+#### Composer
+```bash
+$ composer install
+```
 
-Vhost:
+#### Vhost:
+```
 <VirtualHost *:80>
     DocumentRoot " .. /vnmart/public"
     ServerName localhost
@@ -17,3 +22,4 @@ Vhost:
         Require all granted
     </Directory>
 </VirtualHost>
+```
