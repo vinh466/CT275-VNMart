@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 12, 2022 at 05:16 AM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.1
+-- Máy chủ: 127.0.0.1:3360
+-- Thời gian đã tạo: Th10 10, 2022 lúc 04:18 PM
+-- Phiên bản máy phục vụ: 10.8.3-MariaDB
+-- Phiên bản PHP: 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,12 +18,12 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tmp`
+-- Cơ sở dữ liệu: `vn_mart`
 --
 
 DELIMITER $$
 --
--- Procedures
+-- Thủ tục
 --
 CREATE DEFINER=`root`@`localhost` PROCEDURE `thongkebanchay` ()  BEGIN
     select sp.SP_Ma, sp.Ten, 
@@ -57,7 +57,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `xoakh` (IN `email` CHAR(255))  BEGI
 END$$
 
 --
--- Functions
+-- Các hàm
 --
 CREATE DEFINER=`root`@`localhost` FUNCTION `tongdh` () RETURNS INT(11) BEGIN
 	DECLARE countdh INT(11) DEFAULT 0;
@@ -114,7 +114,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitiet_dh`
+-- Cấu trúc bảng cho bảng `chitiet_dh`
 --
 
 CREATE TABLE `chitiet_dh` (
@@ -124,7 +124,7 @@ CREATE TABLE `chitiet_dh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `chitiet_dh`
+-- Đang đổ dữ liệu cho bảng `chitiet_dh`
 --
 
 INSERT INTO `chitiet_dh` (`DH_Ma`, `SP_Ma`, `SoLuong`) VALUES
@@ -255,12 +255,15 @@ INSERT INTO `chitiet_dh` (`DH_Ma`, `SP_Ma`, `SoLuong`) VALUES
 (42, 119, 10),
 (42, 121, 3),
 (43, 40, 97),
-(43, 102, 97);
+(43, 102, 97),
+(44, 40, 1),
+(44, 44, 1),
+(44, 102, 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donhang`
+-- Cấu trúc bảng cho bảng `donhang`
 --
 
 CREATE TABLE `donhang` (
@@ -274,7 +277,7 @@ CREATE TABLE `donhang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `donhang`
+-- Đang đổ dữ liệu cho bảng `donhang`
 --
 
 INSERT INTO `donhang` (`DH_Ma`, `Email`, `NgayNhanHang`, `DiaChiNhan`, `TTDH_Ma`, `created_at`, `updated_at`) VALUES
@@ -309,12 +312,13 @@ INSERT INTO `donhang` (`DH_Ma`, `Email`, `NgayNhanHang`, `DiaChiNhan`, `TTDH_Ma`
 (40, 'vub1910486@student.ctu.edu.vn', NULL, NULL, 1, '2022-05-11 16:35:56', NULL),
 (41, 'vub1910486@student.ctu.edu.vn', NULL, NULL, 1, '2022-05-11 16:37:43', NULL),
 (42, 'vinh466@gmail.com', NULL, NULL, 1, '2022-05-11 16:40:04', NULL),
-(43, 'vinh466@gmail.com', NULL, NULL, 1, '2022-05-11 16:57:46', NULL);
+(43, 'vinh466@gmail.com', NULL, NULL, 1, '2022-05-11 16:57:46', NULL),
+(44, 'vinh466@gmail.com', NULL, NULL, 1, '2022-10-10 13:53:22', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khachhang`
+-- Cấu trúc bảng cho bảng `khachhang`
 --
 
 CREATE TABLE `khachhang` (
@@ -332,7 +336,7 @@ CREATE TABLE `khachhang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `khachhang`
+-- Đang đổ dữ liệu cho bảng `khachhang`
 --
 
 INSERT INTO `khachhang` (`Email`, `MatKhau`, `Ho`, `Ten`, `SoDienThoai`, `DiaChi`, `AnhCaNhan`, `GoogleId`, `FacebookId`, `created_at`, `updated_at`) VALUES
@@ -345,7 +349,7 @@ INSERT INTO `khachhang` (`Email`, `MatKhau`, `Ho`, `Ten`, `SoDienThoai`, `DiaChi
 -- --------------------------------------------------------
 
 --
--- Table structure for table `loai_sp`
+-- Cấu trúc bảng cho bảng `loai_sp`
 --
 
 CREATE TABLE `loai_sp` (
@@ -357,7 +361,7 @@ CREATE TABLE `loai_sp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `loai_sp`
+-- Đang đổ dữ liệu cho bảng `loai_sp`
 --
 
 INSERT INTO `loai_sp` (`DM_Ma`, `Ten`, `MoTa`, `created_at`, `updated_at`) VALUES
@@ -374,7 +378,7 @@ INSERT INTO `loai_sp` (`DM_Ma`, `Ten`, `MoTa`, `created_at`, `updated_at`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phanloai_sp`
+-- Cấu trúc bảng cho bảng `phanloai_sp`
 --
 
 CREATE TABLE `phanloai_sp` (
@@ -383,7 +387,7 @@ CREATE TABLE `phanloai_sp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `phanloai_sp`
+-- Đang đổ dữ liệu cho bảng `phanloai_sp`
 --
 
 INSERT INTO `phanloai_sp` (`SP_Ma`, `DM_Ma`) VALUES
@@ -482,7 +486,7 @@ INSERT INTO `phanloai_sp` (`SP_Ma`, `DM_Ma`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `quantrivien`
+-- Cấu trúc bảng cho bảng `quantrivien`
 --
 
 CREATE TABLE `quantrivien` (
@@ -493,7 +497,7 @@ CREATE TABLE `quantrivien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `quantrivien`
+-- Đang đổ dữ liệu cho bảng `quantrivien`
 --
 
 INSERT INTO `quantrivien` (`TaiKhoan`, `MatKhau`, `updated_at`, `created_at`) VALUES
@@ -502,7 +506,7 @@ INSERT INTO `quantrivien` (`TaiKhoan`, `MatKhau`, `updated_at`, `created_at`) VA
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sanpham`
+-- Cấu trúc bảng cho bảng `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -520,7 +524,7 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `sanpham`
+-- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
 INSERT INTO `sanpham` (`SP_Ma`, `Ten`, `MoTa`, `Anh`, `SoLuong`, `DonGia`, `GiamGia`, `TrangThai`, `DonVi`, `created_at`, `updated_at`) VALUES
@@ -610,7 +614,7 @@ INSERT INTO `sanpham` (`SP_Ma`, `Ten`, `MoTa`, `Anh`, `SoLuong`, `DonGia`, `Giam
 -- --------------------------------------------------------
 
 --
--- Table structure for table `trangthai_dh`
+-- Cấu trúc bảng cho bảng `trangthai_dh`
 --
 
 CREATE TABLE `trangthai_dh` (
@@ -620,25 +624,25 @@ CREATE TABLE `trangthai_dh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `trangthai_dh`
+-- Đang đổ dữ liệu cho bảng `trangthai_dh`
 --
 
 INSERT INTO `trangthai_dh` (`TTDH_Ma`, `Ten`, `MoTa`) VALUES
 (1, 'Đang duyệt', 'Đơn hàng chờ xác nhận\r\n');
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `chitiet_dh`
+-- Chỉ mục cho bảng `chitiet_dh`
 --
 ALTER TABLE `chitiet_dh`
   ADD PRIMARY KEY (`DH_Ma`,`SP_Ma`),
   ADD KEY `fk_ctdh_sp_ma` (`SP_Ma`);
 
 --
--- Indexes for table `donhang`
+-- Chỉ mục cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`DH_Ma`,`Email`),
@@ -646,90 +650,90 @@ ALTER TABLE `donhang`
   ADD KEY `Email` (`Email`);
 
 --
--- Indexes for table `khachhang`
+-- Chỉ mục cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`Email`);
 
 --
--- Indexes for table `loai_sp`
+-- Chỉ mục cho bảng `loai_sp`
 --
 ALTER TABLE `loai_sp`
   ADD PRIMARY KEY (`DM_Ma`);
 
 --
--- Indexes for table `phanloai_sp`
+-- Chỉ mục cho bảng `phanloai_sp`
 --
 ALTER TABLE `phanloai_sp`
   ADD PRIMARY KEY (`SP_Ma`,`DM_Ma`),
   ADD KEY `fk_dm_ma` (`DM_Ma`);
 
 --
--- Indexes for table `quantrivien`
+-- Chỉ mục cho bảng `quantrivien`
 --
 ALTER TABLE `quantrivien`
   ADD PRIMARY KEY (`TaiKhoan`);
 
 --
--- Indexes for table `sanpham`
+-- Chỉ mục cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`SP_Ma`);
 
 --
--- Indexes for table `trangthai_dh`
+-- Chỉ mục cho bảng `trangthai_dh`
 --
 ALTER TABLE `trangthai_dh`
   ADD PRIMARY KEY (`TTDH_Ma`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `donhang`
+-- AUTO_INCREMENT cho bảng `donhang`
 --
 ALTER TABLE `donhang`
-  MODIFY `DH_Ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `DH_Ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- AUTO_INCREMENT for table `loai_sp`
+-- AUTO_INCREMENT cho bảng `loai_sp`
 --
 ALTER TABLE `loai_sp`
   MODIFY `DM_Ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10000;
 
 --
--- AUTO_INCREMENT for table `sanpham`
+-- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   MODIFY `SP_Ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
--- AUTO_INCREMENT for table `trangthai_dh`
+-- AUTO_INCREMENT cho bảng `trangthai_dh`
 --
 ALTER TABLE `trangthai_dh`
   MODIFY `TTDH_Ma` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `chitiet_dh`
+-- Các ràng buộc cho bảng `chitiet_dh`
 --
 ALTER TABLE `chitiet_dh`
   ADD CONSTRAINT `fk_ctdh_hd_ma` FOREIGN KEY (`DH_Ma`) REFERENCES `donhang` (`DH_Ma`),
   ADD CONSTRAINT `fk_ctdh_sp_ma` FOREIGN KEY (`SP_Ma`) REFERENCES `sanpham` (`SP_Ma`);
 
 --
--- Constraints for table `donhang`
+-- Các ràng buộc cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`Email`) REFERENCES `khachhang` (`Email`),
   ADD CONSTRAINT `fk_dh_ctdh_ma` FOREIGN KEY (`TTDH_Ma`) REFERENCES `trangthai_dh` (`TTDH_Ma`);
 
 --
--- Constraints for table `phanloai_sp`
+-- Các ràng buộc cho bảng `phanloai_sp`
 --
 ALTER TABLE `phanloai_sp`
   ADD CONSTRAINT `fk_dm_ma` FOREIGN KEY (`DM_Ma`) REFERENCES `loai_sp` (`DM_Ma`),
