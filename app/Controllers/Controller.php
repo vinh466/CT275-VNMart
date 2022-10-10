@@ -24,7 +24,6 @@ class Controller {
                 return "<?php echo number_format($amount) . ' đ'; ?>";
             }
         });
-
         static::user();
     }
     // Hiển thị View

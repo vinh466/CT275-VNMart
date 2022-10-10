@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class KhachHang extends Model {
@@ -95,10 +96,12 @@ class KhachHang extends Model {
         KhachHang::insert($data);
     }
     public static function editCustomer ($id, array $data = []) {
-        KhachHang::where("email", "=", $id)
+        KhachHang::where("Email", "=", $id)
             ->update($data);
     }
     public static function deleteCustomer($id, $data = []) {
-        KhachHang::where('SP_Ma', '=', $id)->delete();
+        if ($id !== '') {
+            DB::xoakh($id);
+        }
     }
 }

@@ -85,71 +85,21 @@
                 </div>
 
             </div>
-
-
             <!-- Content Row -->
-            <div class="row">
-
-                <!-- DataTales Example -->
-                    <div class="col card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold">Khách hàng mới</h6>
-                        </div>
-                        <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered mb-2" id="dataTable-customer-index" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Email</th>
-                                        <th>Ho</th>
-                                        <th>Ten</th>
-                                        <th>SoDienThoai</th>
-                                        <th>DiaChi</th>
-                                        <th>AnhCaNhan</th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
-                    </div>
-                
-
+            <div class="row justify-content-between">
+                <div class="col-6 shadow">
+                    <table id="grid"> </table>
+                </div>
+                <div class="col-6 shadow">
+                    <table id="grid2"> </table>
+                </div>
             </div>
-            
-
-            <!-- Content Row -->
-            {{-- <div class="row">
-
-                <!-- DataTales Example -->
-                    <div class="col card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold">Đơn hàng mới</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered mb-2" id="dataTable-order-index" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-            </div> --}}
         </div>
         <!-- /.container-fluid -->
-
     </div>
     <!-- End of Main Content -->
+@endsection
+
+@section('script')
+<script src="/js/admin/index.js" defer></script>
 @endsection

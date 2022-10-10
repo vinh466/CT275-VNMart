@@ -3,7 +3,7 @@
 <div class="container-sm">
     <div class="card">
         <div class="row justify-content-center pt-4 pb-4">
-            <div class="col-5 cart">
+            <div class="col-6 cart">
                 <div class="title">
                     <div class="row">
                         <div class="col-10">
@@ -22,25 +22,38 @@
                     @endphp
                     @foreach ($products as $product)
 
-                        <div class="row main align-items-center">
-                            <div class="col-2"><img class="img-fluid" src="/img/home/sanpham/{{ $product->Anh }}"></div>
-                            <div class="col-5">
-                                <div class="row">{{ $product->Ten }}</div>
-                            </div>
-                            <div class="col-2"> 
-                                <span class="text-dark">- </span>
-                                <span class="border p-2 text-dark">1</span>
-                                <span class="text-dark"> +</span> 
-                            </div>
-                            <div class="col-3">
-                                <span>
-                                    @php
-                                        $sum += $product->DonGia - $product->DonGia * $product->GiamGia / 100;
-                                    @endphp
-                                    @vnd($product->DonGia - $product->DonGia * $product->GiamGia / 100)
-                                </span>
-                            </div>
-                        </div>
+                        @foreach ($CartList as $cartID => $amount)
+
+                            @if ($product->SP_Ma == $cartID)
+                                <div class="row main align-items-center">
+                                    <div class="col-2"><img class="img-fluid" src="/img/home/sanpham/{{ $product->Anh }}"></div>
+                                    <div class="col-5">
+                                        <div class="row">{{ $product->Ten }}</div>
+                                    </div>
+                                    <div class="col-2 d-flex amount-input">
+                                        <span class="d-none spMa">{{ $product->SP_Ma }}</span>
+                                        <button class="text-dark amount-input-sub px-2">- </button>
+                                        <input type="text" class="" value="{{$amount}}" style="width: 40px">
+                                        <button class="text-dark amount-input-add px-2"> +</button> 
+                                    </div>
+                                    <div class="col-2">
+                                        <input hidden type="text" value="{{$product->DonGia * (100 - $product->GiamGia) / 100}}">
+                                        <span class="text-right">
+                                            @php
+                                                $sum += $amount * $product->DonGia * (100 - $product->GiamGia) / 100;
+                                            @endphp
+                                            @vnd($amount * $product->DonGia - $product->DonGia * $product->GiamGia / 100)
+                                        </span>
+                                    </div><div class="col-1">
+                                        <span class="btn removeFromCart"> 
+                                            <input hidden type="text" value="{{$product->SP_Ma}}">
+                                            <i class="fas fa-trash"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            @endif
+                                            
+                        @endforeach
                         
                     @endforeach
                 </div>
@@ -60,7 +73,7 @@
                 </form>
                 <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                     <div class="col">Tổng tiền:</div>
-                    <div class="col text-right">
+                    <div class="col text-right" id="total">
                         <span>@vnd( $sum )</span><span></span>
                     </div>
                 </div>

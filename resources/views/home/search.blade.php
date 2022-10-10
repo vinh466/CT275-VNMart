@@ -15,7 +15,7 @@
                     <div class="col-2 m-1 item pt-3 pb-3 m-2" style="min-width:225px;" title="{{ $item->MoTa }}">
                         <img height="150px" src="/img/home/sanpham/{{ $item->Anh }}">
                         <h5 class="text-overflow fw-bold">{{ $item->Ten }}</h5>
-                        <h6 class="text-danger">
+                        <h6 class="text-secondary">
                            @if($item->GiamGia > 0)
                               <del>@vnd($item->DonGia)</del>
                            @else

@@ -13,9 +13,8 @@ class DonHang extends Model {
         "DiaChiNhan",
         "TTDH_Ma",
     ];
-
     public static function getAll() {
-        return DonHang::all();
+        return DonHang::orderBy('created_at', 'DESC')->get();
     }
     public static function addBill($email) {
         return DonHang::insertGetId([

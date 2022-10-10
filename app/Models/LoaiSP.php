@@ -18,4 +18,5 @@ class LoaiSP extends Model
     public static function getAll() {
         return LoaiSP::all();
     }
+    
 }

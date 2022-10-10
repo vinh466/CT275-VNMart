@@ -16,9 +16,10 @@ class HomeController extends Controller {
         $this->listCategory = LoaiSP::getAll();
     }
     function index () {
-        // Call view
+        // Call Models
         $products = SanPham::getAll();
         $productType = PhanLoaiSP::getProduct();
+        // Call view
         Controller::render(page: 'home.index', data: [
             "productsData" => $products,
             "productsType" => $productType,
@@ -27,6 +28,10 @@ class HomeController extends Controller {
     }
     function cart($message = '') {
         // Call view
+        if (isset($_SESSION['message'])) {
+            $message = $_SESSION['message'];
+            unset($_SESSION['message']);
+        }
         $idList = [];
         $cartList = [];
         if (isset($_SESSION['CartList'])) {
@@ -35,6 +40,7 @@ class HomeController extends Controller {
                 array_push($idList, $key);
             }
         }
+        // print_r($cartList);
         $products = (SanPham::searchOnID($idList));
         Controller::render(page: 'home.cart', data: [
             "message" => $message,
@@ -45,16 +51,18 @@ class HomeController extends Controller {
     }
     function paymentCart () {
         $listCart = $_POST;
+        print_r($listCart);
         if (!Controller::isUserLoggedIn()) {
             Controller::redirect('/login');
         } else {
+            $_SESSION['message'] = 'Giỏ hàng trống !';
             if (!empty($listCart)) {
                 $id = DonHang::addBill(unserialize($_SESSION["user"])->Email);
                 ChiTietDH::addDetailBill($id, $listCart);
                 unset($_SESSION['CartList']);
-                HomeController::cart('Đặt hàng thành công !');
+                $_SESSION['message'] = 'Đặt hàng thành công !';
             }
-            HomeController::cart('Giỏ hàng trống !');
+            Controller::redirect('/cart');
         }
     }
     function lienhe() {
@@ -69,6 +77,14 @@ class HomeController extends Controller {
             "listData" => $this->listCategory,
         ]);
     }
+    function removeItemCart() {
+        if (isset($_POST['SP_Ma'])) {
+            if (isset($_SESSION['CartList'])) {
+                unset($_SESSION['CartList'][$_POST['SP_Ma']]);
+                Controller::redirect('/cart');
+            }
+        }
+    }
     function addItemCart () {
         if (isset($_POST['SP_Ma'])) {
             if (isset($_SESSION['CartList'])) {
@@ -76,9 +92,7 @@ class HomeController extends Controller {
             } else {
                 $data = [];
             }
-            if (!isset($data[$_POST['SP_Ma']])) {
-                $data[$_POST['SP_Ma']] = 1;
-            }
+            $data[$_POST['SP_Ma']] = $_POST['SoLuong'];
             $_SESSION['CartList'] = $data;
         }
     }

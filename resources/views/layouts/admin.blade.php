@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="/font/awesome/css/all.css">
     <link href="/font/nunito/all.css" rel="stylesheet">
     <!-- Core plugin CSS-->
-    <link rel="stylesheet" type="text/css" href="/plugins/datatables/datatables.css"/>
+    <link rel="stylesheet" type="text/css" href="/plugins/Gijgo/css/gijgo.min.css"/>
     <link rel="stylesheet" type="text/css" href="/plugins/sb-admin-2/sb-admin-2.css">
     <link rel="stylesheet" type="text/css" href="/plugins/pacejs/pace.min.css">
     <!-- Custom styles for this template-->
@@ -79,12 +79,12 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            {{-- <li class="nav-item @yield('sidebar-active-orders')">
+            <li class="nav-item @yield('sidebar-active-orders')">
                 <a class="nav-link" href="/admin/orders">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Đơn hàng</span>
                 </a>
-            </li> --}}
+            </li>
 
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -181,23 +181,16 @@
     <!-- Bootstrap core JavaScript-->
     <script type="text/javascript" src="/plugins/jquery/jquery.js"></script>
     <script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="/plugins/Gijgo/js/gijgo.js"></script>
     <script src="/plugins/sb-admin-2/sb-admin-2.js" defer></script>
 
     <!-- Core plugin JavaScript-->
-    <script type="text/javascript" src="/plugins/jquery-easing/jquery.easing.js"></script> 
-    <script type="text/javascript" src="/plugins/datatables/datatables.min.js"></script>
     <script type="text/javascript" src="/plugins/pacejs/pace.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script type="text/javascript" src="/js/admin/admin.js" defer></script>
 
     @yield('script')
-    <!-- Page level plugins -->
-    <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
-
-    <!-- Page level custom scripts -->
-    <!-- <script src="js/demo/chart-area-demo.js"></script> -->
-    <!-- <script src="js/demo/chart-pie-demo.js"></script> -->
 </body>
 
 
