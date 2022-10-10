@@ -2,9 +2,12 @@
 
 namespace App\Controllers;
 
+use App\Models\DB;
+use App\Models\LoaiSP;
 use App\Models\DonHang;
 use App\Models\SanPham;
 use App\Models\KhachHang;
+use App\Models\PhanLoaiSP;
 
 class AdminController extends Controller {
     function __construct() {
@@ -16,20 +19,21 @@ class AdminController extends Controller {
     function index() {
         Controller::render(page: 'admin.index', data: [
             "title" => "Admin",
-            "countCustomer" => KhachHang::countCustomer(),
-            "countOrder" => DonHang::countOrder(),
-            "countProduct" => SanPham::countProduct(),
-            "outStockProduct" => SanPham::outStockProduct()
+            "countCustomer" => DB::funcCall('tongkh'),
+            "countOrder" => DB::funcCall('tongdh'),
+            "countProduct" => DB::funcCall('tongsp'),
+            "outStockProduct" => DB::funcCall('tonghethang'),
         ]);
     }
     function customer() {
         Controller::render(page: 'admin.customer', data: [
-            "title" => "Khách hàng"
+            "title" => "Khách hàng",
         ]);
     }
     function product() {
         Controller::render(page: 'admin.product', data: [
-            "title" => "Sản phẩm"
+            "title" => "Sản phẩm",
+            "category" => LoaiSP::getAll(),
         ]);
     }
     function orders() {
@@ -44,7 +48,7 @@ class AdminController extends Controller {
     }
     function addProduct () {
         if (isset($_POST['addSubmit'])) {
-            SanPham::addProduct([
+            $id = SanPham::addProduct([
                 "Ten" => $_POST['Ten'],
                 "MoTa" => $_POST['MoTa'],
                 "SoLuong" => $_POST['SoLuong'],
@@ -55,6 +59,7 @@ class AdminController extends Controller {
                 "TrangThai" => $_POST['TrangThai'],
                 "created_at" => "CURRENT_TIMESTAMP",
             ]);
+            PhanLoaiSP::addCategoryProduct($id, $_POST['DM_Ma']);
         }
         Controller::redirect("./");
     }
@@ -73,11 +78,13 @@ class AdminController extends Controller {
                     "TrangThai" => $_POST['TrangThai'],
                 ]
             );
+            PhanLoaiSP::addCategoryProduct($_POST['SP_Ma'], $_POST['DM_Ma']);
         }
         Controller::redirect("./");
     }
     function deleteProduct() {
         if (isset($_POST['deleteSubmit'])) {
+            // print_r($_POST['SP_Ma']);
             SanPham::deleteProduct($_POST['SP_Ma']);
         }
         Controller::redirect("./");
@@ -110,6 +117,7 @@ class AdminController extends Controller {
                 ]
             );
         }
+
         Controller::redirect("./");
     }
     function deleteCustomer() {

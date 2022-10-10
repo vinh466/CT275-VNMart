@@ -4,7 +4,6 @@ var black_layer = document.getElementById('black-layer');
 var categoryItem = document.querySelectorAll('.list-group-item');
 
 categoryItem.forEach( e => {
-    console.log(e);
     e.addEventListener('click', (item) => {
         e.submit();
         console.log(e);
@@ -36,13 +35,15 @@ function showToast (message) {
 }
 $('.add-cart-btn').click(function (e) {
     e.preventDefault();
+    console.log($(this).siblings("input").val());
     $.post({
         url: '/cart/add-item',
         type: 'POST',
         data: { 
-            SP_Ma: $(this).siblings("input").val()
+            SP_Ma: $(this).siblings("input").val(),
+            SoLuong: 1
         },
-        success: function (result) { 
+        success: function (result) {
             showToast("Bạn đã thêm hàng");
         },
 
@@ -50,5 +51,85 @@ $('.add-cart-btn').click(function (e) {
 
         complete: function (data) { }
     });
-
 });
+
+function vndFormater (num) {
+    return num.toLocaleString({ style: 'currency' }) + ' đ';
+}
+function showTotal() {
+    let sum = 0;
+    $('.amount-input').each(function (index) {
+        sum += $(this).children('input').val() * $(this).next().children('input').val();
+    })
+    $('#total').text(vndFormater(sum));
+}
+
+$(document).ready(function () {
+    $('.amount-input');
+    $('.removeFromCart').on('click', function () {
+        $.post({
+            url: '/cart/remove-item',
+            type: 'POST',
+            data: {
+                SP_Ma: $(this).children('input').val()
+            },
+            success: function (result) {
+                location.reload();
+            },
+        });
+    });
+    $('.amount-input').children('input').on('keypress', function (e) {
+        if (e.which == 13) {
+            let n = $(this).val() + 1;
+            $(this).val((n).toString());
+            $(this).siblings('.amount-input-sub').trigger('click');
+        }
+    });
+    $('.amount-input-sub').on('click', function () {
+        let n = $(this).parent().children('input').val();
+        let spMa = $(this).parent().children('.spMa').text();
+        n--;
+        n = (n > 99) ? 99 : n;
+        n = (n < 1) ? 1 : n;
+        $(this).parent().children('input').val(n.toString());
+        let price = parseInt($(this).parent().next().children('input').val());
+        $(this).parent().next().children('span').text(vndFormater(price * n));
+        $('#fr-payment').children('input:hidden').each(function () {
+            if ($(this).attr('name') === spMa){
+                $(this).attr("value", n.toString());
+            }
+        });
+        showTotal();
+        $.post({
+            url: '/cart/add-item',
+            type: 'POST',
+            data: {
+                SP_Ma: spMa,
+                SoLuong: n
+            }
+        });
+    });
+    $('.amount-input-add').on('click', function () {
+        let n = $(this).parent().children('input').val();
+        let spMa = $(this).parent().children('.spMa').text();
+        n++;
+        n = (n > 99) ? 99 : n;
+        $(this).parent().children('input').val(n.toString());
+        let price = parseInt($(this).parent().next().children('input').val());
+        $(this).parent().next().children('span').text(vndFormater(price * n));
+        $('#fr-payment').children('input:hidden').each(function () {
+            if ($(this).attr('name') === spMa) {
+                $(this).attr("value", n.toString());
+            }
+        });
+        showTotal();
+        $.post({
+            url: '/cart/add-item',
+            type: 'POST',
+            data: {
+                SP_Ma: spMa,
+                SoLuong: n
+            }
+        });
+    });
+}); 

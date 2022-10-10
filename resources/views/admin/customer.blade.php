@@ -33,37 +33,90 @@
 
                 <!-- DataTales Example -->
                 <div class="col card shadow mb-4">
-                    {{-- <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold">Khách hàng </h6>
-                    </div> --}}
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered mb-2" id="dataTable-customer" width="100%" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Email</th>
-                                        <th>MatKhau</th>
-                                        <th>Ho</th>
-                                        <th>Ten</th>
-                                        <th>SoDienThoai</th>
-                                        <th>DiaChi</th>
-                                        <th>AnhCaNhan</th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
+                    <table id="grid">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th data-sortable="true"></th>
+                                <th></th>
+                                {{-- <th data-field="PlaceOfBirth">Ten</th> --}}
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th width="120" class="gj-button-md " data-tmpl="<i class='fas fa-pen text-warning'></i> Chỉnh Sửa"align="center" data-events="click: Edit"></th>
+                                <th width="80" data-tmpl="<i class='fas fa-trash text-danger'></i> Xóa" align="center" data-events="click: Delete"></th>
+                            </tr>
+                        </thead>
+                    </table>
+                        
                 </div>
-                
 
             </div>
 
         </div>
         <!-- /.container-fluid -->
+        {{-- Modal Edit --}}
+        <div id="dialog-customter-edit" class="gj-display-none modal" width="360" data-auto-open="false" data-modal="true">
+            <div data-role="body">
+                <input type="hidden" id="ID" />
+                <div class="">
+                    <span class="gj-dialog-md-title ">Email</span>
+                    <input type="text" class="gj-textbox-md " id="modalEmail" disabled>
+                </div>
+                <div class="gj-margin-top-20">
+                    <span class="gj-dialog-md-title">Mật khẩu</span>
+                    <input type="text" class="gj-textbox-md" id="modalMatKhau" />
+                </div>
+                {{-- group --}}
+                <div class="gj-margin-top-20 d-flex justify-content-between flex-1">
+                    <div class="gj-margin-top-20 flex-fill mr-3">
+                        <span class="gj-dialog-md-title">Tên</span>
+                        <input type="text" class="gj-textbox-md" id="modalTen" />
+                    </div>
+                    <div class="gj-margin-top-20 flex-fill mr-3">
+                        <span class="gj-dialog-md-title">Họ</span>
+                        <input type="text" class="gj-textbox-md" id="modalHo" />
+                    </div>
+                    <div class="gj-margin-top-20 flex-fill">
+                        <span class="gj-dialog-md-title">Giới tính</span>
+                        <select class="gj-textbox-md" id="modalGioiTinh">
+                        <option check>Nam</option>
+                        <option>Nữ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="gj-margin-top-20 flex-fill">
+                    <span class="gj-dialog-md-title">Số điện thoại</span>
+                    <input type="text" class="gj-textbox-md" id="modalSDT">
+                </div>
+                <div class="gj-margin-top-20">
+                    <span class="gj-dialog-md-title">Địa chỉ</span>
+                    <textarea type="text" class="gj-textbox-md" id="modalDiaChi"></textarea>
+                </div>
+                <div class="gj-margin-top-20">
+                    <span class="gj-dialog-md-title">Ảnh cá nhân</span>
+                    <input type="text" class="gj-textbox-md" id="modalAnhCaNhan"/>
+                </div>
+            </div>
+            <div data-role="footer">
+                <button type="button" id="btnEdit" class="gj-button-md text-warning">Lưu</button>
+                <button type="button" id="" class="gj-button-md text-danger btnCancel">Hủy</button>
+            </div>
+        </div>
+        {{-- Modal Edit End --}}
 
+        {{-- Modal Delete --}}
+        <div id="dialog-customter-delete" class="gj-display-none modal" width="360" data-auto-open="false" data-modal="true">
+            <div data-role="body">
+                <h4>Bạn chắc là muốn xóa <span id="modalEmailDelete"></span></h4>
+            </div>
+            <div data-role="footer">
+                <button type="button" id="btnDelete" class="gj-button-md text-danger">Xác nhận</button>
+                <button type="button" id="" class="gj-button-md text-warning btnCancel">Hủy</button>
+            </div>
+        </div>
+        {{-- Modal Edit End --}}
     </div>
     <!-- End of Main Content -->
 @endsection

@@ -11,7 +11,7 @@ function time() {
     var now = {
         "day": weekday[today.getDay()],
         "dd": today.getDate(),
-        "mm": today.getMonth(),
+        "mm": today.getMonth() + 1,
         "yyyy": today.getFullYear(),
         "h": today.getHours(),
         "m": today.getMinutes(),
@@ -32,46 +32,6 @@ function time() {
     clocktime = setTimeout("time()", "1000", "Javascript");
 }
 $(document).ready(function () {
-    
     time();
-
-    $.ajax({
-        url: '/api/get-new-customer',
-        type: 'POST',
-        success: function (result) {
-            try {
-                newCustomer = JSON.parse(result);
-                console.log(newCustomer);
-            } catch (e) {
-                console.error(e);
-                newCustomer = {};
-            }
-        },
-
-        fail: function (xhr, textStatus, errorThrown) {},
-
-        complete: function (data) {
-            $('#dataTable-customer-index').DataTable({
-                "ordering": false,
-                select: true,
-                responsive: true,
-                searching: false,
-                paging: false,
-                info: false,
-                language: {
-                    "emptyTable": "Không có dữ liệu ... ",
-                },
-                data: newCustomer,
-                columns: [
-                    { "data": 'Email' },
-                    { "data": 'Ho' },
-                    { "data": 'Ten' },
-                    { "data": 'SoDienThoai' },
-                    { "data": 'DiaChi' },
-                    { "data": 'AnhCaNhan' },
-                ],
-            });
-        }
-    });
 }); 
 

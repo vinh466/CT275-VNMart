@@ -31,4 +31,10 @@ class PhanLoaiSP extends Model
             ->get()
             ->groupBy('DM_Ma');
     }
+    public static function addCategoryProduct($SP_Ma, $data) {
+        PhanLoaiSP::where('SP_Ma', '=', $SP_Ma)->delete();
+        foreach ($data as $key => $value) {
+            PhanLoaiSP::insert(['SP_Ma' => $SP_Ma, 'DM_Ma' => $value]);
+        }
+    }
 }

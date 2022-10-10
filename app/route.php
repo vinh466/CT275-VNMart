@@ -16,6 +16,7 @@ $route->post('/[Hh]ome/category', 'HomeController@categorySearch');
 //Cart
 $route->get('/[Cc]art', 'HomeController@cart');
 $route->post('/[Cc]art/add-item', 'HomeController@addItemCart');
+$route->post('/[Cc]art/remove-item', 'HomeController@removeItemCart');
 $route->post('/[Cc]art/payment', 'HomeController@paymentCart');
 
 //Recruitment
@@ -33,8 +34,8 @@ $route->mount('/[Aa]dmin', function () use ($route) {
     $route->mount('/customer', function () use ($route) {
         $route->get('/', 'AdminController@customer');
         $route->post('/edit', 'AdminController@editCustomer');
-        $route->get('/add', 'AdminController@addCustomer');
-        $route->get('/delete', 'AdminController@deleteCustomer');
+        $route->post('/add', 'AdminController@addCustomer');
+        $route->post('/delete', 'AdminController@deleteCustomer');
     });
     // /Admin/product/
     $route->mount('/product', function () use ($route) {
@@ -71,9 +72,17 @@ $route->post('/register', 'LoginController@registerProcess');
 
 //API
 $route->post('/api/get-customers', 'ApiController@getCustomers');
+$route->get('/api/get-customers', 'ApiController@getCustomers');
 $route->post('/api/get-products', 'ApiController@getProducts');
+$route->get('/api/get-products', 'ApiController@getProducts');
+$route->get('/api/get-orders', 'ApiController@getOrders');
+$route->get('/api/get-hot-customer', 'ApiController@getHotCustomers');
+$route->get('/api/get-hot-product', 'ApiController@getHotProduct');
 $route->post('/api/get-new-customer', 'ApiController@getNewCustomer');
 $route->post('/api/get-new-order', 'ApiController@getNewOrder');
+
+//test
+$route->get('/test', 'ApiController@test');
 
 //404
 $route->set404(function () {

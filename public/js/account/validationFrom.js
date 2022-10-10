@@ -2,6 +2,8 @@
 //     submitHandler: function () { alert("submitted!"); }
 // });
 $(document).ready(function () {
+
+
     $("#userRegister").validate({
         rules: {
             firstNameRegister: "required",

@@ -43,13 +43,15 @@ class SanPham extends Model {
             ->groupBy('SP_Ma');;
     }
     public static function addProduct (array $data = []) {
-        SanPham::insert($data);
+        return SanPham::insertGetId($data);
     }
     public static function editProduct($id, array $data = []) {
         SanPham::where("SP_Ma","=", $id)
             ->update($data);
     }
     public static function deleteProduct($id, $data = []) {
+        PhanLoaiSP::where('SP_Ma', '=', $id)->delete();
+        ChiTietDH::where('SP_Ma', '=', $id)->delete();
         SanPham::where('SP_Ma', '=', $id)->delete();
     }
     public function phanLoaiSP() {
