@@ -28,7 +28,9 @@ $ composer install
 > Import file /vn_mart 10-10 v1.2.sql
 
 ###### Với thiết lập mặc định:
+
 ```bash
+#.env
 DB_HOST="localhost"
 DB_NAME="vn_mart"
 DB_USER="root"
